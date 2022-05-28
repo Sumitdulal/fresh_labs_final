@@ -1,7 +1,10 @@
-// ignore_for_file: use_key_in_widget_constructors, prefer_const_constructors, prefer_typing_uninitialized_variables, prefer_const_constructors_in_immutables
+// ignore_for_file: use_key_in_widget_constructors, prefer_const_constructors, prefer_typing_uninitialized_variables, prefer_const_constructors_in_immutables, unused_import
 
 import 'package:flutter/material.dart';
 import 'package:fresh_labs_final/screens/detail_screen.dart';
+import 'package:fresh_labs_final/auth.dart';
+import 'package:provider/provider.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 const stylistData = [
   {
@@ -67,7 +70,7 @@ class HomeScreen extends StatelessWidget {
                 height: 30,
               ),
               Container(
-                height: MediaQuery.of(context).size.height,
+                // height: MediaQuery.of(context).size.height,
                 width: MediaQuery.of(context).size.width,
                 decoration: BoxDecoration(
                   color: Colors.white,
@@ -77,23 +80,26 @@ class HomeScreen extends StatelessWidget {
                 ),
                 child: Padding(
                   padding: EdgeInsets.symmetric(horizontal: 30),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      SizedBox(
-                        height: 50,
-                      ),
-                      Text(
-                        'Hair Stylist',
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 24,
+                  child: SingleChildScrollView(
+                    scrollDirection: Axis.vertical,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        SizedBox(
+                          height: 50,
                         ),
-                      ),
-                      StylistCard(stylistData[0]),
-                      StylistCard(stylistData[1]),
-                      StylistCard(stylistData[2]),
-                    ],
+                        Text(
+                          'Hair Stylist',
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 24,
+                          ),
+                        ),
+                        StylistCard(stylistData[0]),
+                        StylistCard(stylistData[1]),
+                        StylistCard(stylistData[2]),
+                      ],
+                    ),
                   ),
                 ),
               ),
@@ -114,7 +120,6 @@ class StylistCard extends StatelessWidget {
     return Container(
       margin: EdgeInsets.symmetric(vertical: 20),
       width: MediaQuery.of(context).size.width,
-      height: MediaQuery.of(context).size.height / 3 - 20,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(20),
         color: stylist['bgColor'],
