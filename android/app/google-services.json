@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "241651516089",
+    "project_id": "fresh-labs-7d38b",
+    "storage_bucket": "fresh-labs-7d38b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:241651516089:android:e060b850d22b7ca2d2d168",
+        "android_client_info": {
+          "package_name": "com.example.fresh_labs_final"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "241651516089-7fcrm907h3lnpa9kqghkfecs0h9f86uv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAQTbBYt20ruvJC9au3DLJMOoD7vNaX-PA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "241651516089-7fcrm907h3lnpa9kqghkfecs0h9f86uv.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
