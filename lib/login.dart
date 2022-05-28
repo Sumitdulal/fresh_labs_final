@@ -113,21 +113,7 @@ class _myLoginState extends State<myLogin> {
                                     ),
                                   ),
                                 )
-                          // CircleAvatar(
-                            
-                          //   radius: 30,
-                          //   backgroundColor: Color(0xff4c505b),
-                          //   child: IconButton(
-                          //     icon: Icon(Icons.arrow_forward),
-                          //     color: Colors.white,
-                          //     onPressed: (){
-                                
-                          //       }
-                                
-                          //       // Navigator.pushNamed(context, 'homepage');
-                             
-                             
-                          // ))
+                         
                         ],
                       ),
                        SizedBox(
@@ -149,7 +135,9 @@ class _myLoginState extends State<myLogin> {
                           )
                           ),
                 
-                          TextButton(onPressed: (){}, 
+                          TextButton(onPressed: (){
+                             Navigator.pushNamed(context, 'forgot_password');
+                          }, 
                           child: Text('Forgot Password',
                           style: TextStyle(
                             decoration: TextDecoration.underline,

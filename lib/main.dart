@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
+import 'package:fresh_labs_final/forgot_password.dart';
 import 'package:fresh_labs_final/homepage.dart';
 import 'package:fresh_labs_final/login.dart';
 import 'package:fresh_labs_final/register.dart';
@@ -19,7 +20,8 @@ void main() async {
     routes: {
       'login':(context) => myLogin(),
       'register':(context) => myRegister(),
-      'homepage':(context) => myhome()
+      'homepage':(context) => myhome(),
+      'forgot_password':(context) => forgotPassword()
     },
   ));
   
