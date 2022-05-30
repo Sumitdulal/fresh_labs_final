@@ -1,39 +1,26 @@
 // ignore_for_file: use_key_in_widget_constructors, prefer_const_constructors, prefer_typing_uninitialized_variables, prefer_const_constructors_in_immutables, unused_import
 
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:fresh_labs_final/screens/detail_screen.dart';
 import 'package:fresh_labs_final/auth.dart';
+import 'package:fresh_labs_final/screens/stylish_card.dart';
 import 'package:provider/provider.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
-const stylistData = [
-  {
-    'stylistName': 'Cameron Jones',
-    'salonName': 'Super Cut Salon',
-    'rating': '4.8',
-    'rateAmount': '56',
-    'imgUrl': 'assets/stylist1.png',
-    'bgColor': Color(0xffFFF0EB),
-  },
-  {
-    'stylistName': 'Max Robertson',
-    'salonName': 'Rossano Ferretti Salon',
-    'rating': '4.7',
-    'rateAmount': '80',
-    'imgUrl': 'assets/stylist2.png',
-    'bgColor': Color(0xffEBF6FF),
-  },
-  {
-    'stylistName': 'Beth Watson',
-    'salonName': 'Neville Hair and Beauty',
-    'rating': '4.7',
-    'rateAmount': '70',
-    'imgUrl': 'assets/stylist3.png',
-    'bgColor': Color(0xffFFF3EB),
-  }
-];
+class HomeScreen extends StatefulWidget {
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
 
-class HomeScreen extends StatelessWidget {
+class _HomeScreenState extends State<HomeScreen> {
+  @override
+  void initState() {
+    super.initState();
+  }
+
+  final _database = FirebaseDatabase.instance.ref();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -48,7 +35,6 @@ class HomeScreen extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
                     IconButton(
-                      
                       icon: Icon(
                         Icons.arrow_back_ios,
                         color: Colors.white,
@@ -56,7 +42,6 @@ class HomeScreen extends StatelessWidget {
                       onPressed: () {},
                     ),
                     IconButton(
-                      
                       icon: Icon(
                         Icons.search,
                         color: Colors.white,
@@ -70,7 +55,6 @@ class HomeScreen extends StatelessWidget {
                 height: 30,
               ),
               Container(
-                // height: MediaQuery.of(context).size.height,
                 width: MediaQuery.of(context).size.width,
                 decoration: BoxDecoration(
                   color: Colors.white,
@@ -95,9 +79,35 @@ class HomeScreen extends StatelessWidget {
                             fontSize: 24,
                           ),
                         ),
-                        StylistCard(stylistData[0]),
-                        StylistCard(stylistData[1]),
-                        StylistCard(stylistData[2]),
+                        StreamBuilder(
+                            stream: _database.child('Userinfo').onValue,
+                            builder: (context, snapshot) {
+                              final clientCards = <StylistCard>[];
+                              if (snapshot.hasData) {
+                                final allstylish = Map<dynamic, dynamic>.from(
+                                    ((snapshot.data! as DatabaseEvent)
+                                            .snapshot
+                                            .value ??
+                                        {}) as Map<dynamic, dynamic>);
+                                allstylish.forEach((key, value) {
+                                  String cKey = key.toString();
+                                  
+                                  final individualDetail =
+                                      Map<String, dynamic>.from(value);
+                                  if (individualDetail['usertype'].toString() ==
+                                      'Stylist') {
+                                        print('........................................ '+ cKey);
+                                    final item = StylistCard(
+                                        cKey: cKey,
+                                        stylishName: individualDetail['name'],
+                                        stylishservice: '',
+                                        saloonName: individualDetail['saloon']);
+                                    clientCards.add(item);
+                                  }
+                                });
+                              }
+                              return Column(children: clientCards);
+                            }),
                       ],
                     ),
                   ),
@@ -106,101 +116,6 @@ class HomeScreen extends StatelessWidget {
             ],
           ),
         ),
-      ),
-    );
-  }
-}
-
-class StylistCard extends StatelessWidget {
-  final stylist;
-  StylistCard(this.stylist);
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      margin: EdgeInsets.symmetric(vertical: 20),
-      width: MediaQuery.of(context).size.width,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(20),
-        color: stylist['bgColor'],
-      ),
-      child: Stack(
-        children: <Widget>[
-          Positioned(
-            top: 20,
-            right: -60,
-            child: Image.asset(
-              stylist['imgUrl'],
-              width: MediaQuery.of(context).size.width * 0.60,
-            ),
-          ),
-          Padding(
-            padding: EdgeInsets.only(top: 40, left: 30),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                Text(
-                  stylist['stylistName'],
-                  style: TextStyle(
-                    fontWeight: FontWeight.w600,
-                    fontSize: 20,
-                  ),
-                ),
-                SizedBox(
-                  height: 5,
-                ),
-                Text(
-                  stylist['salonName'],
-                  style: TextStyle(
-                    fontWeight: FontWeight.w300,
-                  ),
-                ),
-                SizedBox(
-                  height: 10,
-                ),
-                Row(
-                  children: <Widget>[
-                    Icon(
-                      Icons.star,
-                      size: 16,
-                      color: Color(0xff4E295B),
-                    ),
-                    SizedBox(
-                      width: 10,
-                    ),
-                    Text(
-                      stylist['rating'],
-                      style: TextStyle(
-                        color: Color(0xff4E295B),
-                      ),
-                    ),
-                  ],
-                ),
-                SizedBox(
-                  height: 20,
-                ),
-                MaterialButton(
-                  onPressed: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => DetailScreen(stylist)));
-                  },
-                  color: Color(0xff4E295B),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(20),
-                  ),
-                  child: Text(
-                    'View Profile',
-                    style: TextStyle(
-                      color: Colors.white,
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ],
       ),
     );
   }

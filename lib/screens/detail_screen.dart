@@ -1,20 +1,49 @@
 // ignore_for_file: prefer_typing_uninitialized_variables, prefer_const_constructors_in_immutables, use_key_in_widget_constructors, sized_box_for_whitespace, prefer_const_constructors, import_of_legacy_library_into_null_safe
 
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:outline_material_icons/outline_material_icons.dart';
 
-var serviceList = [
-  {'title': 'Men Hair Cut', 'duration': 45, 'price': 30},
-  {'title': 'Women Hair Cut', 'duration': 60, 'price': 50},
-  {'title': 'Color & Blow Dry', 'duration': 90, 'price': 75},
-  {'title': 'Oil Treatment', 'duration': 30, 'price': 20},
-];
+// var serviceList = [
+//   {'title': 'Men Hair Cut', 'duration': 45, 'price': 30},
+//   {'title': 'Women Hair Cut', 'duration': 60, 'price': 50},
+//   {'title': 'Color & Blow Dry', 'duration': 90, 'price': 75},
+//   {'title': 'Oil Treatment', 'duration': 30, 'price': 20},
+// ];
 
-class DetailScreen extends StatelessWidget {
-  final stylist;
+class DetailScreen extends StatefulWidget {
+  final ckey;
 
-  DetailScreen(this.stylist);
+  DetailScreen(this.ckey);
 
+  @override
+  State<DetailScreen> createState() => _DetailScreenState();
+}
+
+class _DetailScreenState extends State<DetailScreen> {
+  final _database = FirebaseDatabase.instance.ref();
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    stname();
+  }
+  String barbername = '';
+  String saname = '';
+  void stname(){
+    _database.child('Userinfo').child(widget.ckey).onValue.listen((event) {
+      // print(event.snapshot.value);
+      final barberinfo = event.snapshot.value as Map<dynamic,dynamic>;
+      print(widget.ckey);
+      setState(() {
+        saname = barberinfo['name'];
+        barbername = barberinfo['saloon'];
+      });
+
+
+    });
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -86,92 +115,37 @@ class DetailScreen extends StatelessWidget {
                         SizedBox(
                           height: 30,
                         ),
-                        ServiceTile(serviceList[0]),
-                        ServiceTile(serviceList[1]),
-                        ServiceTile(serviceList[2]),
-                        ServiceTile(serviceList[3]),
-                        ClipRRect(
-                          borderRadius: BorderRadius.circular(20),
-                          child: Container(
-                            padding: EdgeInsets.all(20),
-                            width: MediaQuery.of(context).size.width,
-                            height: MediaQuery.of(context).size.height / 8,
-                            color: Color(0xff4E295B),
-                            child: Column(
-                              children: <Widget>[
-                                Row(
-                                  // ignore: prefer_const_literals_to_create_immutables
-                                  children: <Widget>[
-                                    Text(
-                                      'Angel Howard · ',
-                                      style: TextStyle(
-                                        color: Colors.white,
-                                        fontWeight: FontWeight.w600,
-                                      ),
-                                    ),
-                                    Text(
-                                      'Mar 9, 2020',
-                                      style: TextStyle(
-                                        fontWeight: FontWeight.w300,
-                                        color: Colors.white,
-                                      ),
-                                    ),
-                                    SizedBox(
-                                      width: 30,
-                                    ),
-                                    Icon(
-                                      Icons.star,
-                                      color: Color(0xffFF8573),
-                                      size: 16,
-                                    ),
-                                    SizedBox(
-                                      width: 4,
-                                    ),
-                                    Icon(
-                                      Icons.star,
-                                      color: Color(0xffFF8573),
-                                      size: 16,
-                                    ),
-                                    SizedBox(
-                                      width: 4,
-                                    ),
-                                    Icon(
-                                      Icons.star,
-                                      color: Color(0xffFF8573),
-                                      size: 16,
-                                    ),
-                                    SizedBox(
-                                      width: 4,
-                                    ),
-                                    Icon(
-                                      Icons.star,
-                                      color: Color(0xffFF8573),
-                                      size: 16,
-                                    ),
-                                    SizedBox(
-                                      width: 3,
-                                    ),
-                                    Icon(
-                                      Icons.star,
-                                      color: Color(0xffFF8573),
-                                      size: 16,
-                                    ),
-                                  ],
-                                ),
-                                SizedBox(
-                                  height: 10,
-                                ),
-                                Text(
-                                  'Cameron is the best colorist and stylish I’ve ever met. He has an amazing talent! He is ver...',
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.w300,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        )
+                        // ServiceTile(serviceList[0]),
+                         StreamBuilder(
+                            stream: _database.child('service').child(widget.ckey).onValue,
+                            builder: (context, snapshot) {
+                              final clientCards = <ServiceTile>[];
+                              if (snapshot.hasData) {
+                                final allstylish = Map<dynamic, dynamic>.from(
+                                    ((snapshot.data! as DatabaseEvent)
+                                            .snapshot
+                                            .value ??
+                                        {}) as Map<dynamic, dynamic>);
+                                allstylish.forEach((key, value) {
+                                  String cKey = key.toString();
+                                  final individualDetail =
+                                      Map<String, dynamic>.from(value);
+                                      // print(individualDetail);
+                                    final item = ServiceTile(
+                                      ckey:cKey,
+                                      stylistId: widget.ckey,
+                                      service:individualDetail
+
+                                    );
+                                    clientCards.add(item);
+                                  
+                                });
+                                
+                              }
+                              return Column(children: clientCards);
+                            })
+                     
+                        
                       ],
                     ),
                   ),
@@ -188,7 +162,7 @@ class DetailScreen extends StatelessWidget {
                         width: MediaQuery.of(context).size.width / 3 - 20,
                         height: MediaQuery.of(context).size.height / 6 + 20,
                         decoration: BoxDecoration(
-                          color: stylist['bgColor'],
+                          color: Colors.red,
                           borderRadius: BorderRadius.circular(20),
                         ),
                         child: Stack(
@@ -198,7 +172,7 @@ class DetailScreen extends StatelessWidget {
                               top: 10,
                               right: -25,
                               child: Image.asset(
-                                stylist['imgUrl'],
+                               'assets/stylist2.png',
                                 scale: 1.7,
                               ),
                             ),
@@ -212,7 +186,7 @@ class DetailScreen extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
                           Text(
-                            stylist['stylistName'],
+                            saname,
                             style: TextStyle(
                               fontWeight: FontWeight.bold,
                               fontSize: 20,
@@ -222,57 +196,57 @@ class DetailScreen extends StatelessWidget {
                             height: 5,
                           ),
                           Text(
-                            stylist['salonName'],
+                            barbername,
                             style: TextStyle(
                               fontWeight: FontWeight.w300,
                               color: Colors.grey,
                             ),
                           ),
-                          SizedBox(
-                            height: 10,
-                          ),
-                          Row(
-                            children: <Widget>[
-                              Icon(
-                                Icons.star,
-                                size: 16,
-                                color: Color(0xffFF8573),
-                              ),
-                              SizedBox(width: 5),
-                              Text(
-                                stylist['rating'],
-                                style: TextStyle(
-                                  color: Color(0xffFF8573),
-                                ),
-                              ),
-                              SizedBox(
-                                width: 5,
-                              ),
-                              Text(
-                                '(${stylist['rateAmount']})',
-                                style: TextStyle(
-                                  color: Colors.grey,
-                                ),
-                              ),
-                            ],
-                          )
+                          // SizedBox(
+                          //   height: 10,
+                          // ),
+                          // Row(
+                          //   children: <Widget>[
+                          //     Icon(
+                          //       Icons.star,
+                          //       size: 16,
+                          //       color: Color(0xffFF8573),
+                          //     ),
+                          //     SizedBox(width: 5),
+                          //     Text(
+                          //       stylist['rating'],
+                          //       style: TextStyle(
+                          //         color: Color(0xffFF8573),
+                          //       ),
+                          //     ),
+                          //     SizedBox(
+                          //       width: 5,
+                          //     ),
+                          //     Text(
+                          //       '(${stylist['rateAmount']})',
+                          //       style: TextStyle(
+                          //         color: Colors.grey,
+                          //       ),
+                          //     ),
+                          //   ],
+                          // )
                         ],
                       ),
                     ],
                   ),
                 ),
               ),
-              Positioned(
-                right: 10,
-                top: MediaQuery.of(context).size.height / 3 - 55,
-                child: MaterialButton(
-                  onPressed: () {},
-                  padding: EdgeInsets.all(10),
-                  shape: CircleBorder(),
-                  color: Colors.white,
-                  child: Icon(OMIcons.favoriteBorder),
-                ),
-              ),
+              // Positioned(
+              //   right: 10,
+              //   top: MediaQuery.of(context).size.height / 3 - 55,
+              //   child: MaterialButton(
+              //     onPressed: () {},
+              //     padding: EdgeInsets.all(10),
+              //     shape: CircleBorder(),
+              //     color: Colors.white,
+              //     child: Icon(OMIcons.favoriteBorder),
+              //   ),
+              // ),
             ],
           ),
         ),
@@ -282,8 +256,12 @@ class DetailScreen extends StatelessWidget {
 }
 
 class ServiceTile extends StatelessWidget {
+  final ckey;
+  final stylistId;
   final service;
-  ServiceTile(this.service);
+  final _database = FirebaseDatabase.instance.ref();
+  ServiceTile({required this.service,required this.ckey,required this.stylistId});
+  
 
   @override
   Widget build(BuildContext context) {
@@ -298,7 +276,7 @@ class ServiceTile extends StatelessWidget {
               SizedBox(
                 width: MediaQuery.of(context).size.width / 2 - 40,
                 child: Text(
-                  service['title'],
+                  service['service'],
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 18,
@@ -309,7 +287,7 @@ class ServiceTile extends StatelessWidget {
                 height: 5,
               ),
               Text(
-                '${service['duration']} Min',
+                '${service['time']} Min',
                 style: TextStyle(
                   color: Colors.grey,
                 ),
@@ -317,14 +295,18 @@ class ServiceTile extends StatelessWidget {
             ],
           ),
           Text(
-            '\$${service['price']}',
+            '\$${service['amount']}',
             style: TextStyle(
               fontWeight: FontWeight.bold,
               fontSize: 18,
             ),
           ),
           MaterialButton(
-            onPressed: () {},
+            onPressed: () {
+
+              setStatus();
+
+            },
             color: Color(0xffFF8573),
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(20),
@@ -337,5 +319,11 @@ class ServiceTile extends StatelessWidget {
         ],
       ),
     );
+  }
+  void setStatus(){
+    // final value = service as Map<dynamic,dynamic>;
+    _database.child('service').child(stylistId).child(ckey).update({'booked':true});
+    print( _database.child('service').child(ckey).path);
+
   }
 }
