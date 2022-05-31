@@ -71,7 +71,7 @@ class _forgotPasswordState extends State<forgotPassword> {
                           child: IconButton(
                             color: Colors.white,
                             onPressed: (){
-                              Navigator.pushNamed(context, 'homepage');
+                              Navigator.pushNamed(context, 'filter');
                             },
                            icon: Icon(Icons.arrow_forward)),
                         )

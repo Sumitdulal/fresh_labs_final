@@ -1,6 +1,8 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
+import 'package:fresh_labs_final/appointments.dart';
+import 'package:fresh_labs_final/filter.dart';
 import 'package:fresh_labs_final/forgot_password.dart';
 import 'package:fresh_labs_final/homepage.dart';
 import 'package:fresh_labs_final/login.dart';
@@ -23,7 +25,9 @@ void main() async {
       'register':(context) => myRegister(),
       'homepage':(context) => myhome(),
       'forgot_password':(context) => forgotPassword(),
-      'stylist':(context) => stylish_ui()
+      'stylist':(context) => stylish_ui(),
+      // 'filter':(context) => MyFilters()
+      
     },
   ));
   

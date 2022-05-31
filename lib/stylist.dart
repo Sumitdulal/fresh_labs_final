@@ -3,6 +3,8 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:fresh_labs_final/appointments.dart';
+import 'package:fresh_labs_final/card.dart';
 
 class stylish_ui extends StatefulWidget {
   const stylish_ui({Key? key}) : super(key: key);
@@ -178,6 +180,15 @@ class _stylish_uiState extends State<stylish_ui> {
                               SizedBox(
                               height: 40,
                             ),
+                            ElevatedButton(onPressed: (){
+                              Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                                builder: (context) =>
+                                                    AppointmentList()),
+                                          );
+                              
+                            }, child: Text('Appointments')),
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [

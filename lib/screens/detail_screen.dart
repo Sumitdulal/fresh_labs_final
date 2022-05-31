@@ -23,15 +23,20 @@ class DetailScreen extends StatefulWidget {
 
 class _DetailScreenState extends State<DetailScreen> {
   final _database = FirebaseDatabase.instance.ref();
+  String barbername = '';
+  String saname = '';
+  String customerName = '';
+  String customerEmail = '';
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
+    _selectUsetType();
     stname();
   }
-  String barbername = '';
-  String saname = '';
+  
   void stname(){
+    
     _database.child('Userinfo').child(widget.ckey).onValue.listen((event) {
       // print(event.snapshot.value);
       final barberinfo = event.snapshot.value as Map<dynamic,dynamic>;
@@ -43,6 +48,31 @@ class _DetailScreenState extends State<DetailScreen> {
 
 
     });
+  }
+   
+
+  _selectUsetType() {
+   
+     _database
+        .child(
+            'Userinfo' 
+            )
+       
+        .onValue.listen((event){
+          print(event.snapshot.value);
+          final cudetail =  event.snapshot.value as Map<dynamic,dynamic> ;
+          cudetail.forEach((key, value) { 
+            final cudetails =  value as Map<dynamic,dynamic>;
+             setState(() {
+            customerName = cudetails['name'];
+            customerEmail = cudetails['email'];
+            
+          });
+          });
+          
+         
+        });
+
   }
   @override
   Widget build(BuildContext context) {
@@ -134,7 +164,9 @@ class _DetailScreenState extends State<DetailScreen> {
                                     final item = ServiceTile(
                                       ckey:cKey,
                                       stylistId: widget.ckey,
-                                      service:individualDetail
+                                      service:individualDetail,
+                                      cemail: customerEmail ,
+                                      cname: customerName,
 
                                     );
                                     clientCards.add(item);
@@ -259,8 +291,10 @@ class ServiceTile extends StatelessWidget {
   final ckey;
   final stylistId;
   final service;
+  final cname;
+  final cemail;
   final _database = FirebaseDatabase.instance.ref();
-  ServiceTile({required this.service,required this.ckey,required this.stylistId});
+  ServiceTile({required this.service,required this.ckey,required this.stylistId,required this.cname,required this.cemail});
   
 
   @override
@@ -304,7 +338,8 @@ class ServiceTile extends StatelessWidget {
           MaterialButton(
             onPressed: () {
 
-              setStatus();
+              // setStatus();
+              _database.child('BookedService').child(stylistId).push().set({'amount':service['amount'],'customerEmail':cemail,'customerName':cname,'saloon':service['saloon'],'service':service['service'],'stylist':service['stylist'],'time':service['time']});
 
             },
             color: Color(0xffFF8573),
@@ -322,7 +357,7 @@ class ServiceTile extends StatelessWidget {
   }
   void setStatus(){
     // final value = service as Map<dynamic,dynamic>;
-    _database.child('service').child(stylistId).child(ckey).update({'booked':true});
+    
     print( _database.child('service').child(ckey).path);
 
   }
