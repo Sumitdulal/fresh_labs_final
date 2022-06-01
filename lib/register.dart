@@ -24,26 +24,26 @@ class _myRegisterState extends State<myRegister> {
     return Container(
       decoration: BoxDecoration(
           image: DecorationImage(
-              image: AssetImage('assets/register.png'), fit: BoxFit.cover)),
+              image: AssetImage('assets/5.png'), fit: BoxFit.cover)),
       child: Scaffold(
         backgroundColor: Colors.transparent,
         appBar: AppBar(
-          backgroundColor: Colors.transparent,
+          backgroundColor: Colors.purple,
           elevation: 0,
         ),
         body: Stack(
           children: [
             Container(
-              padding: EdgeInsets.only(left: 35, top: 30),
+              padding: EdgeInsets.only(left: 75, top: 10),
               child: Text(
-                'Create\nAccount',
+                'Create Account',
                 style: TextStyle(color: Colors.white, fontSize: 33),
               ),
             ),
             SingleChildScrollView(
               child: Container(
                 padding: EdgeInsets.only(
-                    top: MediaQuery.of(context).size.height * 0.28),
+                    top: MediaQuery.of(context).size.height * 0.15),
                 child: Form(
                   key: _formKey,
                   child: Column(
@@ -55,22 +55,24 @@ class _myRegisterState extends State<myRegister> {
                           children: [
                             TextField(
                               controller: nameController,
-                              style: TextStyle(color: Colors.white),
+                              style: TextStyle(color: Colors.purple, fontWeight: FontWeight.bold),
                               decoration: InputDecoration(
                                   enabledBorder: OutlineInputBorder(
+                                    
                                     borderRadius: BorderRadius.circular(10),
                                     borderSide: BorderSide(
-                                      color: Colors.white,
+                                      color: Colors.purple,
+                                      width: 2
                                     ),
                                   ),
                                   focusedBorder: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(10),
                                     borderSide: BorderSide(
-                                      color: Colors.black,
+                                      color: Colors.purple,
                                     ),
                                   ),
                                   hintText: "Name",
-                                  hintStyle: TextStyle(color: Colors.white),
+                                  hintStyle: TextStyle(color: Color.fromARGB(255, 34, 32, 32), fontWeight: FontWeight.bold),
                                   border: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(10),
                                   )),
@@ -80,22 +82,24 @@ class _myRegisterState extends State<myRegister> {
                             ),
                             TextField(
                               controller: emailController,
-                              style: TextStyle(color: Colors.white),
+                              style: TextStyle(color: Colors.purple, fontWeight: FontWeight.bold),
                               decoration: InputDecoration(
                                   enabledBorder: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(10),
                                     borderSide: BorderSide(
-                                      color: Colors.white,
+                                      color: Colors.purple,
+                                      width: 2
                                     ),
                                   ),
                                   focusedBorder: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(10),
                                     borderSide: BorderSide(
-                                      color: Colors.black,
+                                      color: Colors.purple,
+                                      width: 2
                                     ),
                                   ),
                                   hintText: "Email",
-                                  hintStyle: TextStyle(color: Colors.white),
+                                  hintStyle: TextStyle(color: Color.fromARGB(255, 34, 32, 32), fontWeight: FontWeight.bold),
                                   border: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(10),
                                   )),
@@ -110,13 +114,14 @@ class _myRegisterState extends State<myRegister> {
                                     enabledBorder: OutlineInputBorder(
                                       borderRadius: BorderRadius.circular(10),
                                       borderSide: BorderSide(
-                                        color: Colors.white,
+                                        color: Colors.purple,
+                                        width: 2
                                       ),
                                     ),
                                     focusedBorder: OutlineInputBorder(
                                       borderRadius: BorderRadius.circular(10),
                                       borderSide: BorderSide(
-                                        color: Colors.white,
+                                        color: Colors.purple,
                                       ),
                                     ),
                                     border: OutlineInputBorder(
@@ -126,6 +131,7 @@ class _myRegisterState extends State<myRegister> {
                                   value: dropdownValue,
                                   isExpanded: true,
                                   icon: const Icon(Icons.arrow_drop_down),
+                                  
                                   elevation: 0,
                                   underline: Container(
                                     height: 0,
@@ -142,6 +148,7 @@ class _myRegisterState extends State<myRegister> {
                                       child: Text(value),
                                     );
                                   }).toList(),
+                                  style: TextStyle(color: Colors.black,fontWeight: FontWeight.bold),
                                 ),
                               ),
                             ),
@@ -150,22 +157,24 @@ class _myRegisterState extends State<myRegister> {
                             ),
                             TextField(
                               controller: snameController,
-                              style: TextStyle(color: Colors.white),
+                              style: TextStyle(color: Colors.purple, fontWeight: FontWeight.bold),
                               decoration: InputDecoration(
                                   enabledBorder: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(10),
                                     borderSide: BorderSide(
-                                      color: Colors.white,
+                                     color: Colors.purple,
+                                      width: 2
                                     ),
                                   ),
                                   focusedBorder: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(10),
                                     borderSide: BorderSide(
-                                      color: Colors.black,
+                                      color: Colors.purple,
+                                      width: 2
                                     ),
                                   ),
                                   hintText: "Saloon Name",
-                                  hintStyle: TextStyle(color: Colors.white),
+                                  hintStyle: TextStyle(color: Color.fromARGB(255, 34, 32, 32), fontWeight: FontWeight.bold),
                                   border: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(10),
                                   )),
@@ -175,23 +184,25 @@ class _myRegisterState extends State<myRegister> {
                             ),
                             TextField(
                               controller: passwordController,
-                              style: TextStyle(color: Colors.white),
+                              style: TextStyle(color: Colors.purple, fontWeight: FontWeight.bold),
                               obscureText: true,
                               decoration: InputDecoration(
                                   enabledBorder: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(10),
                                     borderSide: BorderSide(
-                                      color: Colors.white,
+                                     color: Colors.purple,
+                                     width: 2
                                     ),
                                   ),
                                   focusedBorder: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(10),
                                     borderSide: BorderSide(
-                                      color: Colors.black,
+                                     color: Colors.purple,
+                                     width: 2
                                     ),
                                   ),
                                   hintText: "Password",
-                                  hintStyle: TextStyle(color: Colors.white),
+                                  hintStyle: TextStyle(color: Color.fromARGB(255, 34, 32, 32), fontWeight: FontWeight.bold),
                                   border: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(10),
                                   )),
@@ -205,13 +216,13 @@ class _myRegisterState extends State<myRegister> {
                                 Text(
                                   'Sign Up',
                                   style: TextStyle(
-                                      color: Colors.white,
+                                      color: Colors.purple,
                                       fontSize: 27,
                                       fontWeight: FontWeight.w700),
                                 ),
                                 CircleAvatar(
                                   radius: 30,
-                                  backgroundColor: Color(0xff4c505b),
+                                  backgroundColor: Colors.purple,
                                   child: IconButton(
                                       color: Colors.white,
                                       onPressed: () async {
@@ -241,6 +252,9 @@ class _myRegisterState extends State<myRegister> {
                                         }
                                         final newuser = <String,dynamic>{'name':nameController.text.toString(),'email':emailController.text.toString(),'saloon':snameController.text.toString(),'usertype':dropdownValue.toString(),'password':passwordController.text.toString()};
                                           _database.child('Userinfo').child(FirebaseAuth.instance.currentUser!.uid).set(newuser);
+                                          
+                                           Navigator.pushNamed(context, 'login');
+                          
                                         
                                       },
                                       icon: Icon(
@@ -266,7 +280,7 @@ class _myRegisterState extends State<myRegister> {
                                     textAlign: TextAlign.left,
                                     style: TextStyle(
                                         decoration: TextDecoration.underline,
-                                        color: Colors.white,
+                                        color: Colors.purple,
                                         fontSize: 18),
                                   ),
                                   style: ButtonStyle(),

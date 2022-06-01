@@ -15,15 +15,19 @@ class _forgotPasswordState extends State<forgotPassword> {
      return Container(
       decoration: BoxDecoration(
         image: DecorationImage(image: 
-        AssetImage ('assets/login.png'), fit: BoxFit.cover)
+        AssetImage ('assets/5.png'), fit: BoxFit.cover)
       ),
       child: Scaffold(
         backgroundColor: Colors.transparent,
+        appBar: AppBar(
+          backgroundColor: Colors.purple,
+          elevation: 0,
+        ),
         body: Stack(
           children: [
             Container(
-              padding: EdgeInsets.only(left: 50,top: 110),
-              child: Text('Forgot\nPassword?',style: TextStyle(
+              padding: EdgeInsets.only(left: 60,top: 10),
+              child: Text('Forgot Password?',style: TextStyle(
                 color: Colors.white,
                 fontSize: 33,
 
@@ -67,7 +71,7 @@ class _forgotPasswordState extends State<forgotPassword> {
                         CircleAvatar(
                           
                           radius: 30,
-                          backgroundColor: Color(0xff4c505b),
+                          backgroundColor: Colors.purple,
                           child: IconButton(
                             color: Colors.white,
                             onPressed: (){

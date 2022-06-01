@@ -17,6 +17,10 @@ class _AppointmentListState extends State<AppointmentList> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+       appBar: AppBar(
+          backgroundColor: Colors.purple,
+          elevation: 0,
+        ),
       body: Container(
         child: StreamBuilder(
           stream: _database.child('BookedService').child(FirebaseAuth.instance.currentUser!.uid).onValue,

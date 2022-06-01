@@ -49,8 +49,8 @@ class _BookingInformationCardState extends State<BookingInformationCard> {
                 'Appointment\'s Information',
                 style: TextStyle(
                     fontWeight: FontWeight.bold,
-                    color: Colors.green,
-                    fontSize: 18,
+                    color: Colors.purple,
+                    fontSize: 22,
                     letterSpacing: 0.6),
               ),
               const SizedBox(height: 20),
@@ -60,16 +60,18 @@ class _BookingInformationCardState extends State<BookingInformationCard> {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: <Widget>[
+                  
                   const Flexible(
                     flex: 3,
                     child: Text(
                       'Name : '
                           '\nEmail : '
                           '\nService : '
-                          '\nTime : ',
+                          '\nAmount :  ',
                       style: TextStyle(
-                        color: Colors.green,
-                        fontSize: 14,
+                        color: Colors.purple,
+                        fontSize: 17,
+                        fontWeight: FontWeight.bold
                       ),
                     ),
                   ),
@@ -77,12 +79,14 @@ class _BookingInformationCardState extends State<BookingInformationCard> {
                     flex: 4,
                     child: Padding(
                       padding: const EdgeInsets.only(left: 20),
+                      
                       child: Text(
                         widget.name+'\n'+widget.email+'\n'+widget.service+'\n'+widget.amount,
 
                         style: const TextStyle(
-                          color: Colors.green,
-                          fontSize: 13,
+                          
+                          color: Colors.black,
+                          fontSize: 17,
                         ),
                       ),
                     ),
@@ -117,9 +121,10 @@ class _BookingInformationCardState extends State<BookingInformationCard> {
                   //const SizedBox(width: 5),
                   const Flexible(
                     flex: 3,
-                    child: Text('Appt. Date:',
+                    child: Text('Estimated time:',
                         style: TextStyle(
-                          color: Colors.green,
+                          color: Colors.black,
+                          fontSize: 17,
                           fontWeight: FontWeight.bold,
                           letterSpacing: 0.3,
                         )),
@@ -131,8 +136,8 @@ class _BookingInformationCardState extends State<BookingInformationCard> {
                       padding: const EdgeInsets.only(left: 20),
                       child: Text(widget.time,
                           style: const TextStyle(
-                            fontSize: 14,
-                            color: Colors.green,
+                            fontSize: 17,
+                            color: Colors.black,
                             fontWeight: FontWeight.bold,
                             letterSpacing: 0.3,
                           )),

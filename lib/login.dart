@@ -61,15 +61,15 @@ class _myLoginState extends State<myLogin> {
     return Container(
       decoration: BoxDecoration(
           image: DecorationImage(
-              image: AssetImage('assets/login.png'), fit: BoxFit.cover)),
+              image: AssetImage('assets/5.png'), fit: BoxFit.cover)),
       child: Scaffold(
         backgroundColor: Colors.transparent,
         body: Stack(
           children: [
             Container(
-              padding: EdgeInsets.only(left: 50, top: 110),
+              padding: EdgeInsets.only(left: 50, top: 60),
               child: Text(
-                'Welcome\nBack',
+                'Welcome Back',
                 style: TextStyle(
                   color: Colors.white,
                   fontSize: 33,
@@ -89,11 +89,32 @@ class _myLoginState extends State<myLogin> {
                       children: [
                         TextField(
                           controller: emailController,
+                          style: TextStyle(color: Colors.purple, fontWeight: FontWeight.bold),
                           decoration: InputDecoration(
+                            enabledBorder: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(10),
+                                    borderSide: BorderSide(
+                                      color: Colors.purple,
+                                      width: 2
+                                    ),
+                                  ),
+                                  focusedBorder: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(10),
+                                    borderSide: BorderSide(
+                                      color: Colors.purple,
+                                      width: 2
+                                    ),
+                                  ),
                               fillColor: Colors.grey.shade100,
                               hintText: 'Email',
+                              hintStyle: TextStyle(color: Color.fromARGB(255, 34, 32, 32), fontWeight: FontWeight.bold),
+
                               border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(10),
+                                borderSide: BorderSide(
+                                      color: Colors.purple,
+                                      width: 2
+                                    ),
                               )),
                         ),
                         SizedBox(
@@ -101,12 +122,33 @@ class _myLoginState extends State<myLogin> {
                         ),
                         TextField(
                           controller: passwordController,
+                          style: TextStyle(color: Colors.purple, fontWeight: FontWeight.bold),
                           obscureText: true,
                           decoration: InputDecoration(
+                            enabledBorder: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(10),
+                                    borderSide: BorderSide(
+                                      color: Colors.purple,
+                                      width: 2
+                                    ),
+                                  ),
+                                  focusedBorder: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(10),
+                                    borderSide: BorderSide(
+                                      color: Colors.purple,
+                                      width: 2
+                                    ),
+                                  ),
                               fillColor: Colors.grey.shade100,
                               hintText: 'Password',
+                              hintStyle: TextStyle(color: Color.fromARGB(255, 34, 32, 32), fontWeight: FontWeight.bold),
+
                               border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(10),
+                                borderSide: BorderSide(
+                                      color: Colors.purple,
+                                      width: 2
+                                    ),
                               )),
                         ),
                         SizedBox(
@@ -124,8 +166,10 @@ class _myLoginState extends State<myLogin> {
                             ),
                             CircleAvatar(
                               radius: 25,
+                              backgroundColor: Colors.purple,
                               child: IconButton(
                                 color: Colors.white,
+                                
                                 onPressed: () async {
                                   final FirebaseAuth _firebaseAuth =
                                       FirebaseAuth.instance;
