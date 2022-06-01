@@ -285,7 +285,11 @@ class ServiceTile extends StatelessWidget {
                 'stylist': service['stylist'],
                 'time': service['time']
               });
+                      ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(content: Text('Service Booked!')),
+                        );
             },
+            
             color: Colors.purple,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(20),

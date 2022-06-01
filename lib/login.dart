@@ -37,7 +37,7 @@ class _myLoginState extends State<myLogin> {
   _selectUsetType() {
     _userTypeStream = _database
         .child(
-            'userDetails/' + FirebaseAuth.instance.currentUser!.uid.toString())
+            'userDetails/' + (FirebaseAuth.instance.currentUser?.uid.toString()??''))
         .child('usertype')
         .onValue
         .listen((event) {
@@ -167,7 +167,8 @@ class _myLoginState extends State<myLogin> {
                                   final FirebaseAuth _firebaseAuth =
                                       FirebaseAuth.instance;
                                   if (_formKey.currentState!.validate()) {
-                                    await _firebaseAuth
+                                    try{
+                                      await _firebaseAuth
                                         .signInWithEmailAndPassword(
                                             email: emailController.text,
                                             password: passwordController.text)
@@ -200,6 +201,15 @@ class _myLoginState extends State<myLogin> {
                                         _userTypeStream.cancel();
                                       });
                                     });
+                                    } catch(e){
+                                               ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(content: Text('Invalid credentials! Please enter correct one')),
+                        );
+                                    }
+                                    
+                                    ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(content: Text('Logged in...')),
+                        );
                                   }
                                 },
                                 icon: Icon(
@@ -232,7 +242,7 @@ class _myLoginState extends State<myLogin> {
                                       context, 'forgot_password');
                                 },
                                 child: Text(
-                                  'Forgot Password',
+                                  'Try Filters',
                                   style: TextStyle(
                                       decoration: TextDecoration.underline,
                                       fontSize: 18,

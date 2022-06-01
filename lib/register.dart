@@ -37,7 +37,7 @@ class _myRegisterState extends State<myRegister> {
               padding: EdgeInsets.only(left: 75, top: 10),
               child: Text(
                 'Create Account',
-                style: TextStyle(color: Colors.white, fontSize: 33),
+                style: TextStyle(color: Colors.purple, fontSize: 33),
               ),
             ),
             SingleChildScrollView(
@@ -148,7 +148,7 @@ class _myRegisterState extends State<myRegister> {
                                       child: Text(value),
                                     );
                                   }).toList(),
-                                  style: TextStyle(color: Colors.black,fontWeight: FontWeight.bold),
+                                  style: TextStyle(color: Colors.purple,fontWeight: FontWeight.bold),
                                 ),
                               ),
                             ),
@@ -227,6 +227,8 @@ class _myRegisterState extends State<myRegister> {
                                       color: Colors.white,
                                       onPressed: () async {
                                         if (_formKey.currentState!.validate()) {
+                                          try{
+
                                           final credential =
                                               EmailAuthProvider.credential(
                                                   email: emailController.text
@@ -249,17 +251,30 @@ class _myRegisterState extends State<myRegister> {
                                           if(dropdownValue.toString()=='Customer'){
                                            final newuser = <String,dynamic>{'name':nameController.text.toString(),'email':emailController.text.toString(),'usertype':dropdownValue.toString(),'password':passwordController.text.toString()};
                                           _database.child('Userinfo').child(FirebaseAuth.instance.currentUser!.uid).set(newuser);}
+                                                       ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(content: Text('Signed up successfully!')),
+                          
+                        );
+                        Navigator.pushNamed(context, 'login');
+                                          }catch(e){
+                                               ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(content: Text('Invalid inputs! Please enter valid ones')),
+                        );
+                                    }
+                           
                                         }
                                         final newuser = <String,dynamic>{'name':nameController.text.toString(),'email':emailController.text.toString(),'saloon':snameController.text.toString(),'usertype':dropdownValue.toString(),'password':passwordController.text.toString()};
                                           _database.child('Userinfo').child(FirebaseAuth.instance.currentUser!.uid).set(newuser);
                                           
-                                           Navigator.pushNamed(context, 'login');
+                                           
                           
-                                        
+                                          
                                       },
+
                                       icon: Icon(
                                         Icons.arrow_forward,
                                       )),
+
                                 )
                               ],
                             ),

@@ -5,6 +5,7 @@ import 'package:firebase_database/firebase_database.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:fresh_labs_final/appointments.dart';
 import 'package:fresh_labs_final/card.dart';
+import 'package:fresh_labs_final/viewServices.dart';
 
 class stylish_ui extends StatefulWidget {
   const stylish_ui({Key? key}) : super(key: key);
@@ -230,7 +231,7 @@ class _stylish_uiState extends State<stylish_ui> {
                               height: 20,
                             ),
                             Row(
-                              mainAxisAlignment: MainAxisAlignment.start,
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 ElevatedButton(
                                   onPressed: () {
@@ -245,7 +246,25 @@ class _stylish_uiState extends State<stylish_ui> {
                                     primary: Colors.purple, // Background color
                                   ),
                                   child: Text(
-                                    'Go To Appointments',
+                                    'Appointments',
+                                    style: TextStyle(fontSize: 20),
+                                  ),
+                                ),
+                                 ElevatedButton(
+                                  onPressed: () {
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) =>
+                                              myService(FirebaseAuth
+                                                .instance.currentUser!.uid)),
+                                    );
+                                  },
+                                  style: ElevatedButton.styleFrom(
+                                    primary: Colors.purple, // Background color
+                                  ),
+                                  child: Text(
+                                    'Services',
                                     style: TextStyle(fontSize: 20),
                                   ),
                                 ),

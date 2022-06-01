@@ -27,7 +27,7 @@ class _forgotPasswordState extends State<forgotPassword> {
             Container(
               padding: EdgeInsets.only(left: 60, top: 10),
               child: Text(
-                'Forgot Password?',
+                'Try Filters',
                 style: TextStyle(
                   color: Colors.white,
                   fontSize: 33,
@@ -43,22 +43,12 @@ class _forgotPasswordState extends State<forgotPassword> {
                 child: Column(
                     // ignore: prefer_const_literals_to_create_immutables
                     children: [
-                      TextField(
-                        decoration: InputDecoration(
-                            fillColor: Colors.grey.shade100,
-                            hintText: 'Email',
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(10),
-                            )),
-                      ),
-                      SizedBox(
-                        height: 30,
-                      ),
+                      
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text(
-                            'Reset now!',
+                            'Try Filters!',
                             style: TextStyle(
                                 color: Color(0xff4c505b),
                                 fontSize: 27,
