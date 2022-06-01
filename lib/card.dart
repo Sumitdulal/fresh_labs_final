@@ -3,17 +3,17 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 
-
 class BookingInformationCard extends StatefulWidget {
-  String name,email,service,amount,time;
+  String name, email, service, amount, time;
 
-  
-   BookingInformationCard({
-    Key? key,
-    required this.name,required this.email,required this.service,required this.amount,required this.time
-    
-   
-  }) : super(key: key);
+  BookingInformationCard(
+      {Key? key,
+      required this.name,
+      required this.email,
+      required this.service,
+      required this.amount,
+      required this.time})
+      : super(key: key);
 
   @override
   State<BookingInformationCard> createState() => _BookingInformationCardState();
@@ -35,12 +35,8 @@ class _BookingInformationCardState extends State<BookingInformationCard> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {
-       
-      },
+      onTap: () {},
       child: Card(
-        // color: Colors.blue,
-        
         child: Padding(
           padding: const EdgeInsets.all(8.0),
           child: Column(
@@ -54,58 +50,42 @@ class _BookingInformationCardState extends State<BookingInformationCard> {
                     letterSpacing: 0.6),
               ),
               const SizedBox(height: 20),
-              // FutureBuilder(future:_database.,builder: builder)
-              // ,
               Row(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: <Widget>[
-                  
                   const Flexible(
                     flex: 3,
                     child: Text(
                       'Name : '
-                          '\nEmail : '
-                          '\nService : '
-                          '\nAmount :  ',
+                      '\nEmail : '
+                      '\nService : '
+                      '\nAmount :  ',
                       style: TextStyle(
-                        color: Colors.purple,
-                        fontSize: 17,
-                        fontWeight: FontWeight.bold
-                      ),
+                          color: Colors.purple,
+                          fontSize: 17,
+                          fontWeight: FontWeight.bold),
                     ),
                   ),
                   Flexible(
                     flex: 4,
                     child: Padding(
                       padding: const EdgeInsets.only(left: 20),
-                      
                       child: Text(
-                        widget.name+'\n'+widget.email+'\n'+widget.service+'\n'+widget.amount,
-
+                        widget.name +
+                            '\n' +
+                            widget.email +
+                            '\n' +
+                            widget.service +
+                            '\n' +
+                            widget.amount,
                         style: const TextStyle(
-                          
                           color: Colors.black,
                           fontSize: 17,
                         ),
                       ),
                     ),
                   ),
-                  // Flexible(
-                  //   flex: 4,
-                  //   child: Padding(
-                  //     padding: const EdgeInsets.only(left: 30, bottom: 10),
-                  //     child: Container(
-                  //         width: 80.0,
-                  //         height: 80.0,
-                  //         child: Center(
-                  //           child: Text(
-                  //             widget.email,
-                  //           ),
-                  //         ),
-                  //     ),
-                  //   ),
-                  // ),
                 ],
               ),
               Row(
@@ -118,7 +98,6 @@ class _BookingInformationCardState extends State<BookingInformationCard> {
                         ),
                         child: Icon(Icons.access_time),
                       )),
-                  //const SizedBox(width: 5),
                   const Flexible(
                     flex: 3,
                     child: Text('Estimated time:',
@@ -129,7 +108,6 @@ class _BookingInformationCardState extends State<BookingInformationCard> {
                           letterSpacing: 0.3,
                         )),
                   ),
-                  //const SizedBox(width: 10),
                   Flexible(
                     flex: 3,
                     child: Padding(

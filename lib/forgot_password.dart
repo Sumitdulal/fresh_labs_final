@@ -12,11 +12,10 @@ class forgotPassword extends StatefulWidget {
 class _forgotPasswordState extends State<forgotPassword> {
   @override
   Widget build(BuildContext context) {
-     return Container(
+    return Container(
       decoration: BoxDecoration(
-        image: DecorationImage(image: 
-        AssetImage ('assets/5.png'), fit: BoxFit.cover)
-      ),
+          image: DecorationImage(
+              image: AssetImage('assets/5.png'), fit: BoxFit.cover)),
       child: Scaffold(
         backgroundColor: Colors.transparent,
         appBar: AppBar(
@@ -26,73 +25,66 @@ class _forgotPasswordState extends State<forgotPassword> {
         body: Stack(
           children: [
             Container(
-              padding: EdgeInsets.only(left: 60,top: 10),
-              child: Text('Forgot Password?',style: TextStyle(
-                color: Colors.white,
-                fontSize: 33,
-
-                ),),
+              padding: EdgeInsets.only(left: 60, top: 10),
+              child: Text(
+                'Forgot Password?',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 33,
+                ),
+              ),
             ),
             SingleChildScrollView(
               child: Container(
                 padding: EdgeInsets.only(
-                  top: MediaQuery.of(context).size.height*0.5,
-                  right: 35,
-                  left: 35
-                  ),
+                    top: MediaQuery.of(context).size.height * 0.5,
+                    right: 35,
+                    left: 35),
                 child: Column(
-                  // ignore: prefer_const_literals_to_create_immutables
-                  children: [
-                    TextField(
-                      decoration: InputDecoration(
-                        fillColor: Colors.grey.shade100,
-                        hintText: 'Email',
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(10),
-
-                        )
+                    // ignore: prefer_const_literals_to_create_immutables
+                    children: [
+                      TextField(
+                        decoration: InputDecoration(
+                            fillColor: Colors.grey.shade100,
+                            hintText: 'Email',
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(10),
+                            )),
                       ),
-                    ),
-
-                    SizedBox(
-                      height: 30,
-                    ),
-                   
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text('Reset now!',
-                        style: TextStyle(
-                          color:Color(0xff4c505b),
-                          fontSize: 27,
-                          fontWeight: FontWeight.w700
-                        ),
-                        ),
-                        CircleAvatar(
-                          
-                          radius: 30,
-                          backgroundColor: Colors.purple,
-                          child: IconButton(
-                            color: Colors.white,
-                            onPressed: (){
-                              Navigator.pushNamed(context, 'filter');
-                            },
-                           icon: Icon(Icons.arrow_forward)),
-                        )
-                      ],
-                    ),
-                     SizedBox(
-                      height: 40,
-                    ),
-                   
-                  ]),
+                      SizedBox(
+                        height: 30,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            'Reset now!',
+                            style: TextStyle(
+                                color: Color(0xff4c505b),
+                                fontSize: 27,
+                                fontWeight: FontWeight.w700),
+                          ),
+                          CircleAvatar(
+                            radius: 30,
+                            backgroundColor: Colors.purple,
+                            child: IconButton(
+                                color: Colors.white,
+                                onPressed: () {
+                                  Navigator.pushNamed(context, 'filter');
+                                },
+                                icon: Icon(Icons.arrow_forward)),
+                          )
+                        ],
+                      ),
+                      SizedBox(
+                        height: 40,
+                      ),
+                    ]),
               ),
             )
           ],
-
         ),
       ),
     );
-    
   }
 }

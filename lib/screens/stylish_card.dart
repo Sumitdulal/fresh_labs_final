@@ -7,7 +7,6 @@ class StylistCard extends StatefulWidget {
   String saloonName;
   String stylishservice = '';
 
-  
   StylistCard({
     Key? key,
     required this.cKey,
@@ -57,7 +56,8 @@ class _StylistCardState extends State<StylistCard> {
                 Text(
                   widget.saloonName,
                   style: TextStyle(
-                    fontWeight: FontWeight.w300,
+                    
+                    fontWeight: FontWeight.w400,
                   ),
                 ),
                 SizedBox(
@@ -85,15 +85,13 @@ class _StylistCardState extends State<StylistCard> {
                   height: 20,
                 ),
                 MaterialButton(
-                  
                   onPressed: () {
-                    print('******************************** '+ widget.cKey);
                     Navigator.push(
                         context,
                         MaterialPageRoute(
                             builder: (context) => DetailScreen(widget.cKey)));
                   },
-                  color: Color(0xff4E295B),
+                  color: Colors.purple,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(20),
                   ),

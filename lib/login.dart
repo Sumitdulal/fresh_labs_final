@@ -89,32 +89,29 @@ class _myLoginState extends State<myLogin> {
                       children: [
                         TextField(
                           controller: emailController,
-                          style: TextStyle(color: Colors.purple, fontWeight: FontWeight.bold),
+                          style: TextStyle(
+                              color: Colors.purple,
+                              fontWeight: FontWeight.bold),
                           decoration: InputDecoration(
-                            enabledBorder: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(10),
-                                    borderSide: BorderSide(
-                                      color: Colors.purple,
-                                      width: 2
-                                    ),
-                                  ),
-                                  focusedBorder: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(10),
-                                    borderSide: BorderSide(
-                                      color: Colors.purple,
-                                      width: 2
-                                    ),
-                                  ),
+                              enabledBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(10),
+                                borderSide:
+                                    BorderSide(color: Colors.purple, width: 2),
+                              ),
+                              focusedBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(10),
+                                borderSide:
+                                    BorderSide(color: Colors.purple, width: 2),
+                              ),
                               fillColor: Colors.grey.shade100,
                               hintText: 'Email',
-                              hintStyle: TextStyle(color: Color.fromARGB(255, 34, 32, 32), fontWeight: FontWeight.bold),
-
+                              hintStyle: TextStyle(
+                                  color: Color.fromARGB(255, 34, 32, 32),
+                                  fontWeight: FontWeight.bold),
                               border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(10),
-                                borderSide: BorderSide(
-                                      color: Colors.purple,
-                                      width: 2
-                                    ),
+                                borderSide:
+                                    BorderSide(color: Colors.purple, width: 2),
                               )),
                         ),
                         SizedBox(
@@ -122,33 +119,30 @@ class _myLoginState extends State<myLogin> {
                         ),
                         TextField(
                           controller: passwordController,
-                          style: TextStyle(color: Colors.purple, fontWeight: FontWeight.bold),
+                          style: TextStyle(
+                              color: Colors.purple,
+                              fontWeight: FontWeight.bold),
                           obscureText: true,
                           decoration: InputDecoration(
-                            enabledBorder: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(10),
-                                    borderSide: BorderSide(
-                                      color: Colors.purple,
-                                      width: 2
-                                    ),
-                                  ),
-                                  focusedBorder: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(10),
-                                    borderSide: BorderSide(
-                                      color: Colors.purple,
-                                      width: 2
-                                    ),
-                                  ),
+                              enabledBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(10),
+                                borderSide:
+                                    BorderSide(color: Colors.purple, width: 2),
+                              ),
+                              focusedBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(10),
+                                borderSide:
+                                    BorderSide(color: Colors.purple, width: 2),
+                              ),
                               fillColor: Colors.grey.shade100,
                               hintText: 'Password',
-                              hintStyle: TextStyle(color: Color.fromARGB(255, 34, 32, 32), fontWeight: FontWeight.bold),
-
+                              hintStyle: TextStyle(
+                                  color: Color.fromARGB(255, 34, 32, 32),
+                                  fontWeight: FontWeight.bold),
                               border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(10),
-                                borderSide: BorderSide(
-                                      color: Colors.purple,
-                                      width: 2
-                                    ),
+                                borderSide:
+                                    BorderSide(color: Colors.purple, width: 2),
                               )),
                         ),
                         SizedBox(
@@ -169,7 +163,6 @@ class _myLoginState extends State<myLogin> {
                               backgroundColor: Colors.purple,
                               child: IconButton(
                                 color: Colors.white,
-                                
                                 onPressed: () async {
                                   final FirebaseAuth _firebaseAuth =
                                       FirebaseAuth.instance;

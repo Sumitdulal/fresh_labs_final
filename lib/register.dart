@@ -24,7 +24,7 @@ class _myRegisterState extends State<myRegister> {
     return Container(
       decoration: BoxDecoration(
           image: DecorationImage(
-              image: AssetImage('assets/5.png'), fit: BoxFit.cover)),
+              image: AssetImage('assets/4.png'), fit: BoxFit.cover)),
       child: Scaffold(
         backgroundColor: Colors.transparent,
         appBar: AppBar(

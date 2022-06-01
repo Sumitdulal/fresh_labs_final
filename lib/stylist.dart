@@ -55,16 +55,14 @@ class _stylish_uiState extends State<stylish_ui> {
                         margin: EdgeInsets.only(left: 35, right: 35),
                         child: Column(
                           children: [
-                              TextField(
+                            TextField(
                               controller: stylistController,
                               style: TextStyle(color: Colors.purple),
                               decoration: InputDecoration(
                                   enabledBorder: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(10),
                                     borderSide: BorderSide(
-                                      color: Colors.purple,
-                                      width: 2
-                                    ),
+                                        color: Colors.purple, width: 2),
                                   ),
                                   focusedBorder: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(10),
@@ -73,7 +71,9 @@ class _stylish_uiState extends State<stylish_ui> {
                                     ),
                                   ),
                                   hintText: "Stylist name",
-                                  hintStyle: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
+                                  hintStyle: TextStyle(
+                                      color: Colors.black,
+                                      fontWeight: FontWeight.bold),
                                   border: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(10),
                                   )),
@@ -81,16 +81,14 @@ class _stylish_uiState extends State<stylish_ui> {
                             SizedBox(
                               height: 30,
                             ),
-                              TextField(
+                            TextField(
                               controller: saloonController,
                               style: TextStyle(color: Colors.purple),
                               decoration: InputDecoration(
                                   enabledBorder: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(10),
                                     borderSide: BorderSide(
-                                       color: Colors.purple,
-                                      width: 2
-                                    ),
+                                        color: Colors.purple, width: 2),
                                   ),
                                   focusedBorder: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(10),
@@ -99,7 +97,9 @@ class _stylish_uiState extends State<stylish_ui> {
                                     ),
                                   ),
                                   hintText: "Saloon name",
-                                  hintStyle: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
+                                  hintStyle: TextStyle(
+                                      color: Colors.black,
+                                      fontWeight: FontWeight.bold),
                                   border: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(10),
                                   )),
@@ -114,9 +114,7 @@ class _stylish_uiState extends State<stylish_ui> {
                                   enabledBorder: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(10),
                                     borderSide: BorderSide(
-                                      color: Colors.purple,
-                                      width: 2
-                                    ),
+                                        color: Colors.purple, width: 2),
                                   ),
                                   focusedBorder: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(10),
@@ -125,7 +123,9 @@ class _stylish_uiState extends State<stylish_ui> {
                                     ),
                                   ),
                                   hintText: "Service",
-                                  hintStyle: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
+                                  hintStyle: TextStyle(
+                                      color: Colors.black,
+                                      fontWeight: FontWeight.bold),
                                   border: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(10),
                                   )),
@@ -140,9 +140,7 @@ class _stylish_uiState extends State<stylish_ui> {
                                   enabledBorder: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(10),
                                     borderSide: BorderSide(
-                                      color: Colors.purple,
-                                      width: 2
-                                    ),
+                                        color: Colors.purple, width: 2),
                                   ),
                                   focusedBorder: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(10),
@@ -151,7 +149,9 @@ class _stylish_uiState extends State<stylish_ui> {
                                     ),
                                   ),
                                   hintText: "Estimated time",
-                                  hintStyle: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
+                                  hintStyle: TextStyle(
+                                      color: Colors.black,
+                                      fontWeight: FontWeight.bold),
                                   border: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(10),
                                   )),
@@ -166,9 +166,7 @@ class _stylish_uiState extends State<stylish_ui> {
                                   enabledBorder: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(10),
                                     borderSide: BorderSide(
-                                      color: Colors.purple,
-                                      width: 2
-                                    ),
+                                        color: Colors.purple, width: 2),
                                   ),
                                   focusedBorder: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(10),
@@ -177,12 +175,14 @@ class _stylish_uiState extends State<stylish_ui> {
                                     ),
                                   ),
                                   hintText: "Amount",
-                                  hintStyle: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
+                                  hintStyle: TextStyle(
+                                      color: Colors.black,
+                                      fontWeight: FontWeight.bold),
                                   border: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(10),
                                   )),
                             ),
-                              SizedBox(
+                            SizedBox(
                               height: 20,
                             ),
                             Row(
@@ -201,49 +201,56 @@ class _stylish_uiState extends State<stylish_ui> {
                                   child: IconButton(
                                       color: Colors.white,
                                       onPressed: () async {
-                                        final newService = <String,dynamic>{'stylist':stylistController.text.toString(),'saloon':saloonController.text.toString(),'service':serviceController.text.toString(),'time':timeController.text.toString(),'amount':amountController.text.toString()};
-                                        _database.child('service').child(FirebaseAuth.instance.currentUser!.uid).push().set(newService);
+                                        final newService = <String, dynamic>{
+                                          'stylist':
+                                              stylistController.text.toString(),
+                                          'saloon':
+                                              saloonController.text.toString(),
+                                          'service':
+                                              serviceController.text.toString(),
+                                          'time':
+                                              timeController.text.toString(),
+                                          'amount':
+                                              amountController.text.toString()
+                                        };
+                                        _database
+                                            .child('service')
+                                            .child(FirebaseAuth
+                                                .instance.currentUser!.uid)
+                                            .push()
+                                            .set(newService);
                                       },
                                       icon: Icon(
                                         Icons.arrow_forward,
                                       )),
                                 )
                               ],
-                              
                             ),
-                             SizedBox(
+                            SizedBox(
                               height: 20,
                             ),
                             Row(
                               mainAxisAlignment: MainAxisAlignment.start,
                               children: [
-                                ElevatedButton(onPressed: (){
-                                  
-                                  
-                                  Navigator.push(
-                                                context,
-                                                MaterialPageRoute(
-                                                    builder: (context) =>
-                                                        AppointmentList()),
-                                              );
-                                  
-                                },
-                                style: ElevatedButton.styleFrom(
-                                       primary: Colors.purple, // Background color
-  ),
-                                
-                                 child: Text('Go To Appointments',style: TextStyle(fontSize: 20),),
-                                
+                                ElevatedButton(
+                                  onPressed: () {
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) =>
+                                              AppointmentList()),
+                                    );
+                                  },
+                                  style: ElevatedButton.styleFrom(
+                                    primary: Colors.purple, // Background color
+                                  ),
+                                  child: Text(
+                                    'Go To Appointments',
+                                    style: TextStyle(fontSize: 20),
+                                  ),
                                 ),
                               ],
                             ),
-                            
-                            
-                          
-                
-                           
-                            
-                            
                           ],
                         ),
                       )
@@ -256,6 +263,5 @@ class _stylish_uiState extends State<stylish_ui> {
         ),
       ),
     );
-    
   }
 }

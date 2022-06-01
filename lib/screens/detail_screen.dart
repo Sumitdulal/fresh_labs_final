@@ -5,13 +5,6 @@ import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:outline_material_icons/outline_material_icons.dart';
 
-// var serviceList = [
-//   {'title': 'Men Hair Cut', 'duration': 45, 'price': 30},
-//   {'title': 'Women Hair Cut', 'duration': 60, 'price': 50},
-//   {'title': 'Color & Blow Dry', 'duration': 90, 'price': 75},
-//   {'title': 'Oil Treatment', 'duration': 30, 'price': 20},
-// ];
-
 class DetailScreen extends StatefulWidget {
   final ckey;
 
@@ -29,51 +22,36 @@ class _DetailScreenState extends State<DetailScreen> {
   String customerEmail = '';
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     _selectUsetType();
     stname();
   }
-  
-  void stname(){
-    
+
+  void stname() {
     _database.child('Userinfo').child(widget.ckey).onValue.listen((event) {
-      // print(event.snapshot.value);
-      final barberinfo = event.snapshot.value as Map<dynamic,dynamic>;
+      final barberinfo = event.snapshot.value as Map<dynamic, dynamic>;
       print(widget.ckey);
       setState(() {
         saname = barberinfo['name'];
         barbername = barberinfo['saloon'];
       });
-
-
     });
   }
-   
 
   _selectUsetType() {
-   
-     _database
-        .child(
-            'Userinfo' 
-            )
-       
-        .onValue.listen((event){
-          print(event.snapshot.value);
-          final cudetail =  event.snapshot.value as Map<dynamic,dynamic> ;
-          cudetail.forEach((key, value) { 
-            final cudetails =  value as Map<dynamic,dynamic>;
-             setState(() {
-            customerName = cudetails['name'];
-            customerEmail = cudetails['email'];
-            
-          });
-          });
-          
-         
+    _database.child('Userinfo').onValue.listen((event) {
+      print(event.snapshot.value);
+      final cudetail = event.snapshot.value as Map<dynamic, dynamic>;
+      cudetail.forEach((key, value) {
+        final cudetails = value as Map<dynamic, dynamic>;
+        setState(() {
+          customerName = cudetails['name'];
+          customerEmail = cudetails['email'];
         });
-
+      });
+    });
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -105,7 +83,6 @@ class _DetailScreenState extends State<DetailScreen> {
                 top: 50,
                 left: 20,
                 child: IconButton(
-            
                   icon: Icon(
                     Icons.arrow_back_ios,
                     color: Colors.white,
@@ -120,7 +97,6 @@ class _DetailScreenState extends State<DetailScreen> {
                 child: Container(
                   width: MediaQuery.of(context).size.width,
                   height: MediaQuery.of(context).size.height,
-                  
                   decoration: BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.only(
@@ -145,9 +121,11 @@ class _DetailScreenState extends State<DetailScreen> {
                         SizedBox(
                           height: 30,
                         ),
-                        // ServiceTile(serviceList[0]),
-                         StreamBuilder(
-                            stream: _database.child('service').child(widget.ckey).onValue,
+                        StreamBuilder(
+                            stream: _database
+                                .child('service')
+                                .child(widget.ckey)
+                                .onValue,
                             builder: (context, snapshot) {
                               final clientCards = <ServiceTile>[];
                               if (snapshot.hasData) {
@@ -160,24 +138,18 @@ class _DetailScreenState extends State<DetailScreen> {
                                   String cKey = key.toString();
                                   final individualDetail =
                                       Map<String, dynamic>.from(value);
-                                      // print(individualDetail);
-                                    final item = ServiceTile(
-                                      ckey:cKey,
-                                      stylistId: widget.ckey,
-                                      service:individualDetail,
-                                      cemail: customerEmail ,
-                                      cname: customerName,
-
-                                    );
-                                    clientCards.add(item);
-                                  
+                                  final item = ServiceTile(
+                                    ckey: cKey,
+                                    stylistId: widget.ckey,
+                                    service: individualDetail,
+                                    cemail: customerEmail,
+                                    cname: customerName,
+                                  );
+                                  clientCards.add(item);
                                 });
-                                
                               }
                               return Column(children: clientCards);
                             })
-                     
-                        
                       ],
                     ),
                   ),
@@ -204,7 +176,7 @@ class _DetailScreenState extends State<DetailScreen> {
                               top: 10,
                               right: -25,
                               child: Image.asset(
-                               'assets/stylist2.png',
+                                'assets/stylist2.png',
                                 scale: 1.7,
                               ),
                             ),
@@ -221,7 +193,7 @@ class _DetailScreenState extends State<DetailScreen> {
                             saname,
                             style: TextStyle(
                               fontWeight: FontWeight.bold,
-                              fontSize: 20,
+                              fontSize: 22,
                             ),
                           ),
                           SizedBox(
@@ -230,55 +202,18 @@ class _DetailScreenState extends State<DetailScreen> {
                           Text(
                             barbername,
                             style: TextStyle(
-                              fontWeight: FontWeight.w300,
-                              color: Colors.grey,
+                              fontWeight: FontWeight.w500,
+                              color: Colors.purple,
+                              
+
                             ),
                           ),
-                          // SizedBox(
-                          //   height: 10,
-                          // ),
-                          // Row(
-                          //   children: <Widget>[
-                          //     Icon(
-                          //       Icons.star,
-                          //       size: 16,
-                          //       color: Color(0xffFF8573),
-                          //     ),
-                          //     SizedBox(width: 5),
-                          //     Text(
-                          //       stylist['rating'],
-                          //       style: TextStyle(
-                          //         color: Color(0xffFF8573),
-                          //       ),
-                          //     ),
-                          //     SizedBox(
-                          //       width: 5,
-                          //     ),
-                          //     Text(
-                          //       '(${stylist['rateAmount']})',
-                          //       style: TextStyle(
-                          //         color: Colors.grey,
-                          //       ),
-                          //     ),
-                          //   ],
-                          // )
                         ],
                       ),
                     ],
                   ),
                 ),
               ),
-              // Positioned(
-              //   right: 10,
-              //   top: MediaQuery.of(context).size.height / 3 - 55,
-              //   child: MaterialButton(
-              //     onPressed: () {},
-              //     padding: EdgeInsets.all(10),
-              //     shape: CircleBorder(),
-              //     color: Colors.white,
-              //     child: Icon(OMIcons.favoriteBorder),
-              //   ),
-              // ),
             ],
           ),
         ),
@@ -294,8 +229,12 @@ class ServiceTile extends StatelessWidget {
   final cname;
   final cemail;
   final _database = FirebaseDatabase.instance.ref();
-  ServiceTile({required this.service,required this.ckey,required this.stylistId,required this.cname,required this.cemail});
-  
+  ServiceTile(
+      {required this.service,
+      required this.ckey,
+      required this.stylistId,
+      required this.cname,
+      required this.cemail});
 
   @override
   Widget build(BuildContext context) {
@@ -337,12 +276,17 @@ class ServiceTile extends StatelessWidget {
           ),
           MaterialButton(
             onPressed: () {
-
-              // setStatus();
-              _database.child('BookedService').child(stylistId).push().set({'amount':service['amount'],'customerEmail':cemail,'customerName':cname,'saloon':service['saloon'],'service':service['service'],'stylist':service['stylist'],'time':service['time']});
-
+              _database.child('BookedService').child(stylistId).push().set({
+                'amount': service['amount'],
+                'customerEmail': cemail,
+                'customerName': cname,
+                'saloon': service['saloon'],
+                'service': service['service'],
+                'stylist': service['stylist'],
+                'time': service['time']
+              });
             },
-            color: Color(0xffFF8573),
+            color: Colors.purple,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(20),
             ),
@@ -355,10 +299,8 @@ class ServiceTile extends StatelessWidget {
       ),
     );
   }
-  void setStatus(){
-    // final value = service as Map<dynamic,dynamic>;
-    
-    print( _database.child('service').child(ckey).path);
 
+  void setStatus() {
+    print(_database.child('service').child(ckey).path);
   }
 }

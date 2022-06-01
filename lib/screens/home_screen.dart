@@ -24,7 +24,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xff4E295B),
+      backgroundColor: Colors.purple,
       body: SingleChildScrollView(
         child: SafeArea(
           child: Column(
@@ -91,12 +91,11 @@ class _HomeScreenState extends State<HomeScreen> {
                                         {}) as Map<dynamic, dynamic>);
                                 allstylish.forEach((key, value) {
                                   String cKey = key.toString();
-                                  
+
                                   final individualDetail =
                                       Map<String, dynamic>.from(value);
                                   if (individualDetail['usertype'].toString() ==
                                       'Stylist') {
-                                        print('........................................ '+ cKey);
                                     final item = StylistCard(
                                         cKey: cKey,
                                         stylishName: individualDetail['name'],
